@@ -2,15 +2,17 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign } from 'lucide-react'
+import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Wheat, Syringe } from 'lucide-react'
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard',  icon: LayoutDashboard },
-  { href: '/animaux',   label: 'Animaux',    icon: PawPrint        },
-  { href: '/sante',     label: 'Santé',      icon: Stethoscope     },
-  { href: '/stocks',    label: 'Stocks',     icon: Package         },
-  { href: '/ventes',    label: 'Ventes',     icon: DollarSign      },
-  { href: '/rapports',  label: 'Rapports',   icon: FileBarChart2   },
+  { href: '/dashboard',    label: 'Dashboard',     icon: LayoutDashboard },
+  { href: '/animaux',      label: 'Animaux',       icon: PawPrint        },
+  { href: '/alimentation', label: 'Alimentation',  icon: Wheat           },
+  { href: '/vaccination',  label: 'Vaccination',   icon: Syringe         },
+  { href: '/sante',        label: 'Santé',         icon: Stethoscope     },
+  { href: '/stocks',       label: 'Stocks',        icon: Package         },
+  { href: '/ventes',       label: 'Ventes',        icon: DollarSign      },
+  { href: '/rapports',     label: 'Rapports',      icon: FileBarChart2   },
 ]
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
