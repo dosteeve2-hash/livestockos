@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Wheat, Syringe } from 'lucide-react'
+import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Wheat, Syringe, Activity } from 'lucide-react'
 
 const navItems = [
   { href: '/dashboard',    label: 'Dashboard',     icon: LayoutDashboard },
   { href: '/animaux',      label: 'Animaux',       icon: PawPrint        },
+  { href: '/production',   label: 'Production',    icon: Activity        },
   { href: '/alimentation', label: 'Alimentation',  icon: Wheat           },
   { href: '/vaccination',  label: 'Vaccination',   icon: Syringe         },
   { href: '/sante',        label: 'Santé',         icon: Stethoscope     },
