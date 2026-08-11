@@ -539,68 +539,68 @@ export default function AlimentationPage() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               {/* Nom */}
               <div style={{ gridColumn: '1 / -1' }}>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Nom de l&apos;aliment *</label>
-                <input value={form.nom} onChange={e => setForm(f => ({ ...f, nom: e.target.value }))} placeholder="Ex : Maïs concassé" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-nom-de-l-apos-aliment-1">Nom de l&apos;aliment *</label>
+                <input id="alimentation-nom-de-l-apos-aliment-1" value={form.nom} onChange={e => setForm(f => ({ ...f, nom: e.target.value }))} placeholder="Ex : Maïs concassé" style={inputStyle} />
               </div>
 
               {/* Espèce */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Espèce</label>
-                <select value={form.espece} onChange={e => setForm(f => ({ ...f, espece: e.target.value as Espece }))} style={{ ...inputStyle, appearance: 'none' }}>
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-espece-2">Espèce</label>
+                <select id="alimentation-espece-2" value={form.espece} onChange={e => setForm(f => ({ ...f, espece: e.target.value as Espece }))} style={{ ...inputStyle, appearance: 'none' }}>
                   {ESPECES.map(e => <option key={e} value={e}>{e}</option>)}
                 </select>
               </div>
 
               {/* Type */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Type d&apos;aliment</label>
-                <select value={form.typeAliment} onChange={e => setForm(f => ({ ...f, typeAliment: e.target.value as TypeAliment }))} style={{ ...inputStyle, appearance: 'none' }}>
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-type-d-apos-aliment-3">Type d&apos;aliment</label>
+                <select id="alimentation-type-d-apos-aliment-3" value={form.typeAliment} onChange={e => setForm(f => ({ ...f, typeAliment: e.target.value as TypeAliment }))} style={{ ...inputStyle, appearance: 'none' }}>
                   {TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
 
               {/* Quantité */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Qté journalière *</label>
-                <input type="number" value={form.quantiteJournaliere} onChange={e => setForm(f => ({ ...f, quantiteJournaliere: e.target.value }))} placeholder="0.0" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-qte-journaliere-4">Qté journalière *</label>
+                <input id="alimentation-qte-journaliere-4" type="number" value={form.quantiteJournaliere} onChange={e => setForm(f => ({ ...f, quantiteJournaliere: e.target.value }))} placeholder="0.0" style={inputStyle} />
               </div>
 
               {/* Unité */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Unité</label>
-                <select value={form.unite} onChange={e => setForm(f => ({ ...f, unite: e.target.value }))} style={{ ...inputStyle, appearance: 'none' }}>
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-unite-5">Unité</label>
+                <select id="alimentation-unite-5" value={form.unite} onChange={e => setForm(f => ({ ...f, unite: e.target.value }))} style={{ ...inputStyle, appearance: 'none' }}>
                   {['kg', 'L', 'g', 'unité'].map(u => <option key={u} value={u}>{u}</option>)}
                 </select>
               </div>
 
               {/* Coût unitaire */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Coût unitaire (FCFA)</label>
-                <input type="number" value={form.coutUnitaire} onChange={e => setForm(f => ({ ...f, coutUnitaire: e.target.value }))} placeholder="500" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-cout-unitaire-fcfa-6">Coût unitaire (FCFA)</label>
+                <input id="alimentation-cout-unitaire-fcfa-6" type="number" value={form.coutUnitaire} onChange={e => setForm(f => ({ ...f, coutUnitaire: e.target.value }))} placeholder="500" style={inputStyle} />
               </div>
 
               {/* Stock dispo */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Stock disponible</label>
-                <input type="number" value={form.stockDisponible} onChange={e => setForm(f => ({ ...f, stockDisponible: e.target.value }))} placeholder="100" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-stock-disponible-7">Stock disponible</label>
+                <input id="alimentation-stock-disponible-7" type="number" value={form.stockDisponible} onChange={e => setForm(f => ({ ...f, stockDisponible: e.target.value }))} placeholder="100" style={inputStyle} />
               </div>
 
               {/* Seuil alerte */}
               <div>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Seuil alerte</label>
-                <input type="number" value={form.seuilAlerte} onChange={e => setForm(f => ({ ...f, seuilAlerte: e.target.value }))} placeholder="20" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-seuil-alerte-8">Seuil alerte</label>
+                <input id="alimentation-seuil-alerte-8" type="number" value={form.seuilAlerte} onChange={e => setForm(f => ({ ...f, seuilAlerte: e.target.value }))} placeholder="20" style={inputStyle} />
               </div>
 
               {/* Fournisseur */}
               <div style={{ gridColumn: '1 / -1' }}>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Fournisseur</label>
-                <input value={form.fournisseur} onChange={e => setForm(f => ({ ...f, fournisseur: e.target.value }))} placeholder="Agro-BF Ouaga" style={inputStyle} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-fournisseur-9">Fournisseur</label>
+                <input id="alimentation-fournisseur-9" value={form.fournisseur} onChange={e => setForm(f => ({ ...f, fournisseur: e.target.value }))} placeholder="Agro-BF Ouaga" style={inputStyle} />
               </div>
 
               {/* Date appro */}
               <div style={{ gridColumn: '1 / -1' }}>
-                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Date dernier appro</label>
-                <input type="date" value={form.dateAppro} onChange={e => setForm(f => ({ ...f, dateAppro: e.target.value }))} style={{ ...inputStyle, colorScheme: 'dark' }} />
+                <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="alimentation-date-dernier-appro-10">Date dernier appro</label>
+                <input id="alimentation-date-dernier-appro-10" type="date" value={form.dateAppro} onChange={e => setForm(f => ({ ...f, dateAppro: e.target.value }))} style={{ ...inputStyle, colorScheme: 'dark' }} />
               </div>
             </div>
 
