@@ -1,8 +1,9 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Beef, Syringe, Activity, ArrowLeftRight } from 'lucide-react'
+import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Beef, Syringe, Activity, ArrowLeftRight, Menu, X } from 'lucide-react'
 
 const navItems = [
   { href: '/dashboard',     label: 'Dashboard',      icon: LayoutDashboard },
@@ -19,11 +20,36 @@ const navItems = [
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#0A1628' }}>
+      <button
+        type="button"
+        className="mobile-menu-btn"
+        aria-label={mobileOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+        aria-expanded={mobileOpen}
+        onClick={() => setMobileOpen(o => !o)}
+        style={{
+          width: 40, height: 40, alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#0c1a34', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10,
+          color: '#f0f4ff', cursor: 'pointer',
+        }}
+      >
+        {mobileOpen ? <X style={{ width: 18, height: 18 }} /> : <Menu style={{ width: 18, height: 18 }} />}
+      </button>
+
+      <div
+        className={`sidebar-overlay${mobileOpen ? ' open' : ''}`}
+        onClick={() => setMobileOpen(false)}
+      />
+
       {/* Sidebar */}
-      <aside style={{
+      <aside className={`dashboard-sidebar${mobileOpen ? ' open' : ''}`} style={{
         width: 240, flexShrink: 0, display: 'flex', flexDirection: 'column', paddingTop: '1.5rem',
         backgroundColor: '#0c1a34', borderRight: '1px solid rgba(255,255,255,0.07)',
       }}>
@@ -56,7 +82,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      <main style={{ flex: 1, overflowY: 'auto' }}>{children}</main>
+      <main className="dashboard-main" style={{ flex: 1, overflowY: 'auto', minWidth: 0 }}>{children}</main>
     </div>
   )
 }

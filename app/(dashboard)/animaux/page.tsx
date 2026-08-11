@@ -199,15 +199,18 @@ export default function AnimauxPage() {
                   { label: 'N° oreille', placeholder: 'BF-26-XXX' },
                   { label: 'Race', placeholder: 'Ex : Zébu peul' },
                   { label: 'Poids (kg)', placeholder: '0' },
-                ].map(f => (
-                  <div key={f.label}>
-                    <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>{f.label}</label>
-                    <input placeholder={f.placeholder} style={{ width: '100%', padding: '0.5rem 0.75rem', backgroundColor: '#0A1628', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f0f4ff', fontSize: '0.85rem', outline: 'none' }} />
-                  </div>
-                ))}
+                ].map(f => {
+                  const fieldId = `animaux-${f.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`
+                  return (
+                    <div key={f.label}>
+                      <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor={fieldId}>{f.label}</label>
+                      <input id={fieldId} placeholder={f.placeholder} style={{ width: '100%', padding: '0.5rem 0.75rem', backgroundColor: '#0A1628', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f0f4ff', fontSize: '0.85rem', outline: 'none' }} />
+                    </div>
+                  )
+                })}
                 <div>
-                  <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }}>Espèce</label>
-                  <select style={{ width: '100%', padding: '0.5rem 0.75rem', backgroundColor: '#0A1628', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f0f4ff', fontSize: '0.85rem', outline: 'none' }}>
+                  <label style={{ color: '#8899bb', fontSize: '0.75rem', fontWeight: 500, display: 'block', marginBottom: '0.3rem' }} htmlFor="animaux-espece-2">Espèce</label>
+                  <select id="animaux-espece-2" style={{ width: '100%', padding: '0.5rem 0.75rem', backgroundColor: '#0A1628', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f0f4ff', fontSize: '0.85rem', outline: 'none' }}>
                     {ESPECES.map(e => <option key={e} value={e}>{e}</option>)}
                   </select>
                 </div>
