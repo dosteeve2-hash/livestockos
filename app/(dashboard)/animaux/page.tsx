@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PawPrint, Search, Plus, X, Filter } from 'lucide-react'
+import { PawPrint, Search, Plus, X } from 'lucide-react'
 
 type Espece = 'Bovin' | 'Ovin' | 'Caprin' | 'Porcin'
 type Sante  = 'sain' | 'attention' | 'malade'

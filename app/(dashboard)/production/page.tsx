@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ComposedChart, LineChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts'
 import { toast, Toaster } from 'sonner'
+import { useHydrated } from '@/lib/useHydrated'
 import {
   Activity, Milk, Egg, Plus, X, Calendar, TrendingUp, Percent,
 } from 'lucide-react'
@@ -95,8 +96,7 @@ const labelStyle: React.CSSProperties = {
 }
 
 export default function ProductionPage() {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useHydrated()
 
   const [showModal, setShowModal] = useState(false)
   const [form, setForm] = useState({

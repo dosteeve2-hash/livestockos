@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts'
 import { FileBarChart2, PawPrint, Baby, ShoppingCart, Skull, Download } from 'lucide-react'
+import { useHydrated } from '@/lib/useHydrated'
 
 const KPI = [
   { label: 'Effectif total',   value: 47,  unit: 'têtes',   color: '#D4AF37', icon: PawPrint    },
@@ -30,8 +30,7 @@ const fadeUp = {
 }
 
 export default function RapportsPage() {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useHydrated()
 
   async function exportPDF() {
     const { default: jsPDF } = await import('jspdf')

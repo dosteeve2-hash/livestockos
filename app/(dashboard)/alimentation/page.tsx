@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Wheat, Plus, X, TrendingDown, Calendar, Package, DollarSign } from 'lucide-react'
+import { formatFCFA } from '@/lib/format'
 
 type Espece = 'Bovins' | 'Ovins' | 'Caprins' | 'Porcins'
 
@@ -43,10 +44,6 @@ const fadeUp = {
     opacity: 1, y: 0,
     transition: { type: 'spring' as const, stiffness: 80, damping: 18, delay: i * 0.04 },
   }),
-}
-
-function formatFCFA(n: number) {
-  return n.toLocaleString('fr-FR') + ' FCFA'
 }
 
 export default function AlimentationPage() {
