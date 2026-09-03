@@ -1,8 +1,13 @@
 /**
  * Régénère les captures du README depuis l'application réelle.
  *
+ *   npm i --no-save playwright sharp && npx playwright install chromium
  *   npm run build && npx next start -p 3210    # terminal 1
  *   node scripts/captures.mjs                   # terminal 2
+ *
+ * playwright et sharp ne sont volontairement pas dans devDependencies : ils
+ * pèsent plus de 100 Mo pour un usage ponctuel, et `npm ci` tourne à chaque
+ * exécution de CI. On les installe le temps de régénérer les images.
  *
  * BASE, OUT et PAGES sont surchargeables par variable d'environnement.
  */
@@ -34,3 +39,18 @@ for (const [route, name] of Object.entries(PAGES)) {
 }
 
 await browser.close();
+
+// Les PNG bruts en x2 sont lourds ; ramenés à 1440 px de large et
+// recompressés, ils tombent bien plus bas sans perte visible dans un README.
+const sharp = (await import('sharp')).default;
+const { readdir, rename } = await import('node:fs/promises');
+const { join } = await import('node:path');
+for (const file of (await readdir(OUT)).filter((f) => f.endsWith('.png'))) {
+  const p = join(OUT, file);
+  await sharp(p)
+    .resize({ width: 1440, withoutEnlargement: true })
+    .png({ compressionLevel: 9, palette: true, quality: 90 })
+    .toFile(p + '.tmp');
+  await rename(p + '.tmp', p);
+}
+console.log('captures optimisées');
