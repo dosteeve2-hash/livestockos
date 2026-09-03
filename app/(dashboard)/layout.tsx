@@ -4,17 +4,21 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, PawPrint, FileBarChart2, Stethoscope, Package, DollarSign, Wheat, Syringe, Activity } from 'lucide-react'
 
-const navItems = [
+// `soon: true` marque une section prévue mais dont la page n'existe pas encore.
+// Ces entrées étaient de simples <Link> : cliquer dessus menait à un 404 nu, sur
+// un dépôt public avec démo en ligne. Elles restent visibles — elles disent où
+// va le produit — mais ne sont plus cliquables et l'annoncent.
+export const navItems = [
   { href: '/dashboard',    label: 'Dashboard',     icon: LayoutDashboard },
   { href: '/animaux',      label: 'Animaux',       icon: PawPrint        },
   { href: '/production',   label: 'Production',    icon: Activity        },
   { href: '/alimentation', label: 'Alimentation',  icon: Wheat           },
   { href: '/vaccination',  label: 'Vaccination',   icon: Syringe         },
-  { href: '/sante',        label: 'Santé',         icon: Stethoscope     },
-  { href: '/stocks',       label: 'Stocks',        icon: Package         },
-  { href: '/ventes',       label: 'Ventes',        icon: DollarSign      },
+  { href: '/sante',        label: 'Santé',         icon: Stethoscope,     soon: true },
+  { href: '/stocks',       label: 'Stocks',        icon: Package,         soon: true },
+  { href: '/ventes',       label: 'Ventes',        icon: DollarSign,      soon: true },
   { href: '/rapports',     label: 'Rapports',      icon: FileBarChart2   },
-]
+] as const
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -32,17 +36,43 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
 
         <nav style={{ flex: 1, padding: '0 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          {navItems.map(({ href, label, icon: Icon }) => {
+          {navItems.map((item) => {
+            const { href, label, icon: Icon } = item
+            const soon = 'soon' in item && item.soon
             const active = pathname === href
+
+            const base = {
+              display: 'flex', alignItems: 'center', gap: '0.75rem',
+              padding: '0.625rem 0.875rem', borderRadius: 10, fontSize: '0.875rem', fontWeight: 500,
+              textDecoration: 'none', transition: 'all 0.15s',
+              backgroundColor: active ? 'rgba(212,175,55,0.14)' : 'transparent',
+              color: active ? '#D4AF37' : 'rgba(240,244,255,0.55)',
+              borderLeft: active ? '2px solid #D4AF37' : '2px solid transparent',
+            } as const
+
+            if (soon) {
+              return (
+                <span
+                  key={href}
+                  aria-disabled="true"
+                  title="Section à venir"
+                  style={{ ...base, color: 'rgba(240,244,255,0.28)', cursor: 'not-allowed' }}
+                >
+                  <Icon style={{ width: 16, height: 16 }} />
+                  {label}
+                  <span style={{
+                    marginLeft: 'auto', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.04em',
+                    padding: '0.1rem 0.4rem', borderRadius: 99,
+                    backgroundColor: 'rgba(240,244,255,0.06)', color: 'rgba(240,244,255,0.4)',
+                  }}>
+                    BIENTÔT
+                  </span>
+                </span>
+              )
+            }
+
             return (
-              <Link key={href} href={href} style={{
-                display: 'flex', alignItems: 'center', gap: '0.75rem',
-                padding: '0.625rem 0.875rem', borderRadius: 10, fontSize: '0.875rem', fontWeight: 500,
-                textDecoration: 'none', transition: 'all 0.15s',
-                backgroundColor: active ? 'rgba(212,175,55,0.14)' : 'transparent',
-                color: active ? '#D4AF37' : 'rgba(240,244,255,0.55)',
-                borderLeft: active ? '2px solid #D4AF37' : '2px solid transparent',
-              }}>
+              <Link key={href} href={href} style={base}>
                 <Icon style={{ width: 16, height: 16 }} />
                 {label}
               </Link>
