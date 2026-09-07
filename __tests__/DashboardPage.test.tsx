@@ -48,7 +48,7 @@ describe('DashboardPage', () => {
 
   it('renders the farm subtitle', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Août 2026 · Ferme FORGE Afrika')).toBeInTheDocument()
+    expect(screen.getByText(/Août 2026 · Ferme FORGE Afrika/)).toBeInTheDocument()
   })
 
   // ── KPI cards ─────────────────────────────────────────────────────────────
@@ -82,14 +82,15 @@ describe('DashboardPage', () => {
     expect(screen.getByText('15')).toBeInTheDocument()
   })
 
-  it('renders "Décédés" KPI label', () => {
+  it('renders the "Taux mortalité" KPI label', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Décédés')).toBeInTheDocument()
+    expect(screen.getByText('Taux mortalité')).toBeInTheDocument()
   })
 
-  it('renders KPI value 1 (deaths)', () => {
+  it('renders the mortality rate value and its unit', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('1')).toBeInTheDocument()
+    expect(screen.getByText('2.1')).toBeInTheDocument()
+    expect(screen.getByText('%')).toBeInTheDocument()
   })
 
   it('renders "têtes" unit for Effectif total', () => {
@@ -103,39 +104,42 @@ describe('DashboardPage', () => {
     expect(screen.getByText('Alertes sanitaires')).toBeInTheDocument()
   })
 
-  it('renders the FMD vaccine alert', () => {
+  it('renders the disease alert for BV-012', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Vaccin FMD — Bovins (lot B)')).toBeInTheDocument()
+    expect(screen.getByText('Vache #BV-012')).toBeInTheDocument()
+    expect(screen.getByText('Symptômes fièvre aphteuse')).toBeInTheDocument()
   })
 
-  it('renders detail text for FMD alert', () => {
+  it('renders the injury alert for CP-034', () => {
     render(<DashboardPage />)
-    expect(screen.getByText(/Rappel préventif à effectuer avant le 10 août 2026/)).toBeInTheDocument()
+    expect(screen.getByText('Chèvre #CP-034')).toBeInTheDocument()
+    expect(screen.getByText('Plaie patte arrière gauche')).toBeInTheDocument()
   })
 
-  it('renders the sick animal alert for BV-007', () => {
+  it('renders the nutrition alert for BV-003', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Animal malade — Bovin #BV-007')).toBeInTheDocument()
+    expect(screen.getByText('Taureau #BV-003')).toBeInTheDocument()
+    expect(screen.getByText('Perte de poids anormale')).toBeInTheDocument()
   })
 
-  it('renders the sales quota alert for ovines', () => {
+  it('renders the urgency level of each alert', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Quota de vente atteint — Ovins')).toBeInTheDocument()
-  })
-
-  it('renders the "2 urgentes" badge for high-priority alerts', () => {
-    render(<DashboardPage />)
-    expect(screen.getByText('2 urgentes')).toBeInTheDocument()
+    expect(screen.getByText('Haute')).toBeInTheDocument()
+    expect(screen.getByText('Moyenne')).toBeInTheDocument()
+    expect(screen.getByText('Basse')).toBeInTheDocument()
   })
 
   // ── Navigation hint ───────────────────────────────────────────────────────
-  it('renders navigation hint mentioning Animaux', () => {
+  it('renders the three bottom sections', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Animaux')).toBeInTheDocument()
+    expect(screen.getByText('Alertes sanitaires')).toBeInTheDocument()
+    expect(screen.getByText('Vaccinations')).toBeInTheDocument()
+    expect(screen.getByText('Transactions récentes')).toBeInTheDocument()
   })
 
-  it('renders navigation hint mentioning Rapports', () => {
+  it('renders the upcoming vaccination lots', () => {
     render(<DashboardPage />)
-    expect(screen.getByText('Rapports')).toBeInTheDocument()
+    expect(screen.getByText('Lot Bovins A (12 têtes)')).toBeInTheDocument()
+    expect(screen.getByText('FMDV — Fièvre aphteuse')).toBeInTheDocument()
   })
 })

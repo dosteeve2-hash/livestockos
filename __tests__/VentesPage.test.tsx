@@ -1,5 +1,10 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, within } from '@testing-library/react'
+
+// « En traitement », « Surveillance » et « En cours » sont a la fois des libelles
+// d'indicateur et des badges de statut dans le tableau. Viser la zone des
+// indicateurs leve l'ambiguite sans relacher l'assertion.
+const zoneIndicateurs = () => screen.getByRole('region', { name: 'Indicateurs' })
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // ── Mocks ─────────────────────────────────────────────────────────────────────
@@ -65,7 +70,7 @@ describe('VentesPage', () => {
   // 5. KPI En cours
   it('affiche le KPI En cours', () => {
     render(<VentesPage />)
-    expect(screen.getByText('En cours')).toBeInTheDocument()
+    expect(within(zoneIndicateurs()).getByText('En cours')).toBeInTheDocument()
   })
 
   // 6. KPI Ticket moyen
@@ -217,17 +222,20 @@ describe('VentesPage', () => {
   // 25. Clic sur ligne ouvre modal détail
   it('clic sur une ligne de vente ouvre le modal détail', () => {
     render(<VentesPage />)
-    const row = screen.getByText('VTE-001').closest('tr')!
+    const row = within(screen.getByRole('table')).getByText('VTE-001').closest('tr')!
     fireEvent.click(row)
-    expect(screen.getByText('VTE-001')).toBeInTheDocument()
-    expect(screen.getByText('Ouédraogo Seydou')).toBeInTheDocument()
+    // L'identifiant et l'acheteur figurent aussi dans la ligne du tableau :
+    // c'est le contenu du modal qu'on verifie ici, pas leur simple presence.
+    const modal = screen.getByRole('dialog')
+    expect(within(modal).getByText('VTE-001')).toBeInTheDocument()
+    expect(within(modal).getByText('Ouédraogo Seydou')).toBeInTheDocument()
   })
 
   // 26. Modal détail — acheteur affiché
   it('le modal détail affiche l\'acheteur', () => {
     render(<VentesPage />)
-    fireEvent.click(screen.getByText('VTE-002').closest('tr')!)
-    expect(screen.getByText('Kaboré Ali')).toBeInTheDocument()
+    fireEvent.click(within(screen.getByRole('table')).getByText('VTE-002').closest('tr')!)
+    expect(within(screen.getByRole('dialog')).getByText('Kaboré Ali')).toBeInTheDocument()
   })
 
   // 27. Modal détail — mode paiement Orange Money

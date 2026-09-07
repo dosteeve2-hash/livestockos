@@ -12,14 +12,14 @@ import {
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 const KPI = [
-  { label: 'Effectif total',  value: '47',       unit: 'tetes',   color: '#D4AF37', icon: PawPrint      },
-  { label: 'Nes ce mois',     value: '4',        unit: 'animaux', color: '#4ade80', icon: TrendingUp    },
+  { label: 'Effectif total',  value: '47',       unit: 'têtes',   color: '#D4AF37', icon: PawPrint      },
+  { label: 'Nés ce mois',     value: '4',        unit: 'animaux', color: '#4ade80', icon: TrendingUp    },
   { label: 'Vendus ce mois',  value: '15',       unit: 'animaux', color: '#00D4FF', icon: DollarSign    },
-  { label: 'Alertes sante',   value: '3',        unit: 'actives', color: '#f87171', icon: AlertTriangle },
+  { label: 'Alertes santé',   value: '3',        unit: 'actives', color: '#f87171', icon: AlertTriangle },
   { label: 'CA mois (FCFA)',  value: '1 875 000',unit: 'FCFA',    color: '#D4AF37', icon: ShieldCheck   },
   { label: 'Production lait', value: '284',      unit: 'litres',  color: '#818CF8', icon: Milk          },
-  { label: 'Vaccinations',    value: '6',        unit: 'a faire', color: '#F97316', icon: Syringe       },
-  { label: 'Taux mortalite',  value: '2.1',      unit: '%',       color: '#34D399', icon: Activity      },
+  { label: 'Vaccinations',    value: '6',        unit: 'à faire', color: '#F97316', icon: Syringe       },
+  { label: 'Taux mortalité',  value: '2.1',      unit: '%',       color: '#34D399', icon: Activity      },
 ]
 
 const CHEPTEL_DATA = [
@@ -41,15 +41,15 @@ const PRODUCTION_DATA = [
 ]
 
 const ALERTES = [
-  { animal: 'Vache #BV-012', type: 'Maladie', desc: 'Symptomes fievre aphteuse', urgence: 'Haute',  date: '2026-08-09' },
-  { animal: 'Chevre #CP-034', type: 'Blessure', desc: 'Plaie patte arriere gauche', urgence: 'Moyenne', date: '2026-08-08' },
+  { animal: 'Vache #BV-012', type: 'Maladie', desc: 'Symptômes fièvre aphteuse', urgence: 'Haute',  date: '2026-08-09' },
+  { animal: 'Chèvre #CP-034', type: 'Blessure', desc: 'Plaie patte arrière gauche', urgence: 'Moyenne', date: '2026-08-08' },
   { animal: 'Taureau #BV-003', type: 'Nutrition', desc: 'Perte de poids anormale', urgence: 'Basse', date: '2026-08-07' },
 ]
 
 const VACCINATIONS = [
-  { animal: 'Lot Bovins A (12 tetes)', vaccin: 'FMDV — Fievre aphteuse', date: '2026-08-12' },
-  { animal: 'Lot Ovins B (8 tetes)', vaccin: 'PPR — Peste petits ruminants', date: '2026-08-15' },
-  { animal: 'Lot Caprins C (5 tetes)', vaccin: 'Pasteurellose', date: '2026-08-20' },
+  { animal: 'Lot Bovins A (12 têtes)', vaccin: 'FMDV — Fièvre aphteuse', date: '2026-08-12' },
+  { animal: 'Lot Ovins B (8 têtes)', vaccin: 'PPR — Peste petits ruminants', date: '2026-08-15' },
+  { animal: 'Lot Caprins C (5 têtes)', vaccin: 'Pasteurellose', date: '2026-08-20' },
 ]
 
 const TRANSACTIONS = [
@@ -80,7 +80,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ color: '#f0f4ff', fontWeight: 800, fontSize: '1.5rem', margin: '0 0 0.25rem' }}>Dashboard</h1>
-        <p style={{ color: '#8899bb', fontSize: '0.85rem', margin: 0 }}>Aout 2026 · Ferme FORGE Afrika — 47 tetes</p>
+        <p style={{ color: '#8899bb', fontSize: '0.85rem', margin: 0 }}>Août 2026 · Ferme FORGE Afrika — 47 têtes</p>
       </div>
 
       {/* KPIs 4x2 */}
@@ -202,11 +202,11 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
-        {/* Transactions recentes */}
+        {/* Transactions récentes */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} style={card}>
           <h3 style={{ color: '#f0f4ff', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 6 }}>
             <DollarSign style={{ width: 14, height: 14, color: '#D4AF37' }} />
-            Transactions recentes
+            Transactions récentes
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {TRANSACTIONS.map((t, i) => (

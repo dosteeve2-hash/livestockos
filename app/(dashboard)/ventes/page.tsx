@@ -80,7 +80,7 @@ export default function VentesPage() {
         </div>
         <button onClick={() => setShowModal(true)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: GOLD, color: NAVY, border: 'none', borderRadius: 8, padding: '0.65rem 1.1rem', fontWeight: 700, cursor: 'pointer', fontSize: '0.875rem' }}><Plus size={16} /> Nouvelle vente</button>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div role="region" aria-label="Indicateurs" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
           { label: 'CA confirmé', value: `${(caTotal / 1000).toFixed(0)}k FCFA`, color: GOLD, icon: TrendingUp },
           { label: 'Ventes confirmées', value: String(nbConf), color: '#22c55e', icon: CheckCircle },
@@ -173,7 +173,7 @@ export default function VentesPage() {
       </div>
       {selected && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
-          <div style={{ background: '#0f1f3d', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '2rem', width: '100%', maxWidth: 500, position: 'relative' }}>
+          <div role="dialog" aria-modal="true" aria-label={`Détail de la vente ${selected.id}`} style={{ background: '#0f1f3d', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '2rem', width: '100%', maxWidth: 500, position: 'relative' }}>
             <button onClick={() => setSelected(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'rgba(240,244,255,0.5)' }}><X size={18} /></button>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
               <FileText size={20} style={{ color: GOLD }} />
@@ -209,7 +209,7 @@ export default function VentesPage() {
       )}
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
-          <div style={{ background: '#0f1f3d', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '2rem', width: '100%', maxWidth: 480, position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div role="dialog" aria-modal="true" aria-label="Nouvelle vente" style={{ background: '#0f1f3d', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '2rem', width: '100%', maxWidth: 480, position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
             <button onClick={() => setShowModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'rgba(240,244,255,0.5)' }}><X size={18} /></button>
             <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f0f4ff', marginBottom: '1.5rem' }}>Nouvelle vente</h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
