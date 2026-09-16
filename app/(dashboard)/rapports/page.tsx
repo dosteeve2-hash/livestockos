@@ -29,6 +29,11 @@ const fadeUp = {
   }),
 }
 
+const now = new Date()
+const MONTH_LABEL = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+const MONTH_SLUG = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+  .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '-').toLowerCase()
+
 export default function RapportsPage() {
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
@@ -53,7 +58,7 @@ export default function RapportsPage() {
     doc.setFontSize(11)
     doc.setFont('helvetica', 'normal')
     doc.setTextColor(200, 210, 230)
-    doc.text('Rapport mensuel — Août 2026 · FORGE Afrika', 14, 30)
+    doc.text(`Rapport mensuel — ${MONTH_LABEL} · FORGE Afrika`, 14, 30)
 
     // KPIs section
     doc.setFontSize(13)
@@ -103,7 +108,7 @@ export default function RapportsPage() {
     doc.setTextColor(100, 120, 160)
     doc.text('Généré par LivestockOS · FORGE Afrika · ' + new Date().toLocaleDateString('fr-FR'), 14, 290)
 
-    doc.save('rapport-livestock-aout-2026.pdf')
+    doc.save(`rapport-livestock-${MONTH_SLUG}.pdf`)
   }
 
   return (
@@ -115,7 +120,7 @@ export default function RapportsPage() {
             <FileBarChart2 style={{ width: 22, height: 22, color: '#D4AF37' }} />
             Rapports
           </h1>
-          <p style={{ color: '#8899bb', fontSize: '0.8rem', margin: 0 }}>Bilan mensuel · Août 2026</p>
+          <p style={{ color: '#8899bb', fontSize: '0.8rem', margin: 0 }}>Bilan mensuel · {MONTH_LABEL}</p>
         </div>
         <button onClick={exportPDF} style={{
           display: 'flex', alignItems: 'center', gap: '0.5rem',
@@ -128,7 +133,7 @@ export default function RapportsPage() {
       </div>
 
       {/* KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
         {KPI.map((k, i) => (
           <motion.div key={k.label} custom={i} variants={fadeUp} initial="hidden" animate="show"
             style={{ backgroundColor: '#111e35', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '1.25rem' }}>
@@ -146,7 +151,7 @@ export default function RapportsPage() {
       <motion.div custom={4} variants={fadeUp} initial="hidden" animate="show"
         style={{ backgroundColor: '#111e35', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '1.5rem' }}>
         <p style={{ fontWeight: 700, fontSize: '0.95rem', margin: '0 0 0.25rem', color: '#f0f4ff' }}>Effectif par espèce</p>
-        <p style={{ color: '#8899bb', fontSize: '0.75rem', margin: '0 0 1.25rem' }}>Août 2026 · {BAR_DATA.reduce((s, r) => s + r.effectif, 0)} têtes total</p>
+        <p style={{ color: '#8899bb', fontSize: '0.75rem', margin: '0 0 1.25rem' }}>{MONTH_LABEL} · {BAR_DATA.reduce((s, r) => s + r.effectif, 0)} têtes total</p>
 
         {mounted && (
           <ResponsiveContainer width="100%" height={240}>

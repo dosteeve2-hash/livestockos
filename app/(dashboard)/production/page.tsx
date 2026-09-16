@@ -348,32 +348,32 @@ export default function ProductionPage() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 <div>
-                  <label style={labelStyle}>Type</label>
-                  <select value={form.type} onChange={e => handleTypeChange(e.target.value as TypeProduction)} style={inputStyle}>
+                  <label style={labelStyle} htmlFor="production-type-1">Type</label>
+                  <select id="production-type-1" value={form.type} onChange={e => handleTypeChange(e.target.value as TypeProduction)} style={inputStyle}>
                     <option value="Lait">Lait</option>
                     <option value="Œufs">Œufs</option>
                   </select>
                 </div>
                 <div>
-                  <label style={labelStyle}>{form.type === 'Lait' ? 'Animal' : 'Lot'}</label>
-                  <select value={form.cible} onChange={e => setForm(f => ({ ...f, cible: e.target.value }))} style={inputStyle}>
+                  <label style={labelStyle} htmlFor="production-cible-2">{form.type === 'Lait' ? 'Animal' : 'Lot'}</label>
+                  <select id="production-cible-2" value={form.cible} onChange={e => setForm(f => ({ ...f, cible: e.target.value }))} style={inputStyle}>
                     {(form.type === 'Lait' ? VACHES.map(v => v.nom) : LOTS_VOLAILLE.map(l => l.nom)).map(n => (
                       <option key={n} value={n}>{n}</option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label style={labelStyle}>Quantité ({form.type === 'Lait' ? 'litres' : 'unités'})</label>
-                  <input type="number" value={form.quantite} onChange={e => setForm(f => ({ ...f, quantite: e.target.value }))}
+                  <label style={labelStyle} htmlFor="production-quantite-3">Quantité ({form.type === 'Lait' ? 'litres' : 'unités'})</label>
+                  <input id="production-quantite-3" type="number" value={form.quantite} onChange={e => setForm(f => ({ ...f, quantite: e.target.value }))}
                     placeholder="0" style={inputStyle} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Date</label>
-                  <input type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} style={inputStyle} />
+                  <label style={labelStyle} htmlFor="production-date-4">Date</label>
+                  <input id="production-date-4" type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} style={inputStyle} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Notes</label>
-                  <textarea value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
+                  <label style={labelStyle} htmlFor="production-notes-5">Notes</label>
+                  <textarea id="production-notes-5" value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
                     placeholder="Observations éventuelles..." rows={3}
                     style={{ ...inputStyle, resize: 'vertical', fontFamily: 'inherit' }} />
                 </div>
