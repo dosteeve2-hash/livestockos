@@ -131,7 +131,7 @@ export default function SantePage() {
       </div>
 
       {/* KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div role="region" aria-label="Indicateurs" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
           { label: 'En traitement', value: enTraitement.toString(), color: '#ef4444', icon: AlertTriangle },
           { label: 'Surveillance',  value: surveillance.toString(), color: '#f97316', icon: Clock },

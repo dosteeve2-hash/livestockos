@@ -48,7 +48,7 @@ const TX: Transaction[] = [
   { id:'T05', date:'2026-08-01', libelle:'Salaires employes aout 2026',                     type:'Salaires',       sens:'sortie', montant:450_000,   reference:'SAL-2026-08' },
   { id:'T06', date:'2026-07-28', libelle:'Vente 4 taureaux reproducteurs — eleveur Kaya',   type:'Vente animaux',  sens:'entree', montant:1_800_000, reference:'VT-2026-086' },
   { id:'T07', date:'2026-07-25', libelle:'Livraison lait 280L — Epiceries Ouaga 2000',      type:'Vente lait',     sens:'entree', montant:336_000,   reference:'VT-2026-085' },
-  { id:'T08', date:'2026-07-22', libelle:'Achat 12 chevreaux base genetique — Dedougou',    type:'Achat animaux',  sens:'sortie', montant:720_000,   reference:'AC-2026-040' },
+  { id:'T08', date:'2026-07-22', libelle:'Achat 12 chevreaux base génétique — Dédougou',    type:'Achat animaux',  sens:'sortie', montant:720_000,   reference:'AC-2026-040' },
   { id:'T09', date:'2026-07-20', libelle:'Achat son de ble + concentre proteique 800kg',    type:'Achat aliments', sens:'sortie', montant:192_000,   reference:'AC-2026-039' },
   { id:'T10', date:'2026-07-18', libelle:'Vente 15 poulets de chair — marche Bobo',         type:'Vente animaux',  sens:'entree', montant:112_500,   reference:'VT-2026-084' },
   { id:'T11', date:'2026-07-15', libelle:'Reparation pompe hydraulique abreuvoir',          type:'Autres',         sens:'sortie', montant:48_000,    reference:'DP-2026-033' },
@@ -310,7 +310,7 @@ export default function TransactionsPage() {
                     <button onClick={()=>setSelected(t)}
                       style={{ display:'inline-flex', alignItems:'center', gap:5, background:`${CYAN}18`,
                         border:'none', color:CYAN, borderRadius:7, padding:'5px 11px', fontSize:11, cursor:'pointer', fontWeight:600 }}>
-                      Detail
+                      Détail
                     </button>
                   </td>
                 </tr>

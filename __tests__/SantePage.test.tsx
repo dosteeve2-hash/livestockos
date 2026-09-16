@@ -2,6 +2,11 @@ import React from 'react'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+// « En traitement » et « Surveillance » sont a la fois des libelles d'indicateur et
+// des badges de statut dans le tableau. Viser la zone des indicateurs leve
+// l'ambiguite sans relacher l'assertion.
+const zoneIndicateurs = () => screen.getByRole('region', { name: 'Indicateurs' })
+
 // ── Mocks ─────────────────────────────────────────────────────────────────────
 vi.mock('recharts', () => ({
   ResponsiveContainer: ({ children }: any) => React.createElement('div', null, children),
@@ -53,13 +58,13 @@ describe('SantePage', () => {
   // 3. KPI — En traitement
   it('affiche le KPI "En traitement"', () => {
     render(<SantePage />)
-    expect(screen.getByText('En traitement')).toBeInTheDocument()
+    expect(within(zoneIndicateurs()).getByText('En traitement')).toBeInTheDocument()
   })
 
   // 4. KPI — Surveillance
   it('affiche le KPI "Surveillance"', () => {
     render(<SantePage />)
-    expect(screen.getByText('Surveillance')).toBeInTheDocument()
+    expect(within(zoneIndicateurs()).getByText('Surveillance')).toBeInTheDocument()
   })
 
   // 5. KPI — Guéris ce mois
